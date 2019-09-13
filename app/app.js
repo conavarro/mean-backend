@@ -2,10 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const postsRoutes = require('./routes/posts');
+const postsRoutes = require("./routes/posts");
+const usersRoutes = require("./routes/users");
 
 const app = express();
 
+mongoose.set('useCreateIndex', true);
 mongoose.set("useNewUrlParser", true);
 mongoose
   .connect(
@@ -36,5 +38,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/posts", postsRoutes);
+app.use("/api/users", usersRoutes);
 
 module.exports = app;
